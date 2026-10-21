@@ -1,0 +1,25 @@
+{
+  "name": "my-internet",
+  "version": "1.0.0",
+  "description": "My Internet \u2014 a personal discovery dashboard: chronological RSS/Atom reader with discovery features.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npx netlify-cli dev",
+    "dev:local": "node scripts/dev-server.mjs",
+    "test": "node --test",
+    "check-feeds": "node scripts/check-feeds.mjs",
+    "test:e2e": "node scripts/e2e.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2",
+    "jose": "^6.2.13"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}
