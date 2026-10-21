@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>My Internet — Personal Discovery Dashboard</title>
+  <meta name="description" content="A calm, chronological reader and discovery tool. Your sources, your order, no algorithm.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='%23b5452a' stroke-width='8'/%3E%3Cpath d='M6 50h88M50 6c-26 24-26 64 0 88M50 6c26 24 26 64 0 88' fill='none' stroke='%23b5452a' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="/js/theme-init.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-row">
+      <a class="brand" href="#/feed" aria-label="My Internet — home">
+        <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8"/><path d="M6 50h88M50 6c-26 24-26 64 0 88M50 6c26 24 26 64 0 88" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+        <span>My Internet</span>
+      </a>
+      <form class="search" role="search">
+        <input id="q" type="search" placeholder="Search articles and notes  ( / )" aria-label="Search articles and notes" autocomplete="off" maxlength="120">
+      </form>
+      <div class="top-actions">
+        <button id="btn-surprise" class="icon-btn accent" type="button" title="Surprise me" aria-label="Surprise me">✨</button>
+        <button id="btn-refresh" class="icon-btn" type="button" title="Refresh all sources" aria-label="Refresh all sources">↻</button>
+        <button id="btn-theme" class="icon-btn" type="button" title="Theme" aria-label="Change theme">🌓</button>
+        <button id="btn-account" class="icon-btn" type="button" title="Account and sync" aria-label="Account and sync">👤<span id="sync-dot" class="sync-dot" hidden></span></button>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="#/feed" data-route="feed"><span class="n-ico" aria-hidden="true">📰</span><span>Feed</span></a>
+      <a href="#/discover" data-route="discover"><span class="n-ico" aria-hidden="true">🧭</span><span>Discover</span></a>
+      <a href="#/saved" data-route="saved"><span class="n-ico" aria-hidden="true">🔖</span><span>Saved</span></a>
+      <a href="#/sources" data-route="sources"><span class="n-ico" aria-hidden="true">⚙️</span><span>Sources</span></a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1"><p class="boot">Loading…</p></main>
+  <footer class="foot">Articles link to their publishers. Discovery text from Wikipedia/Wikivoyage (CC BY-SA 4.0). No tracking, no ads, no algorithmic ranking.</footer>
+
+  <dialog id="account"></dialog>
+  <div id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <noscript><p class="boot">My Internet needs JavaScript to run.</p></noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
