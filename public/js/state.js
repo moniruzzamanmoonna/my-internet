@@ -136,29 +136,41 @@ export function createStore({ storage, now = () => Date.now() } = {}) {
       emit('reads', true);
     },
 
-    // library
+    // library (bookmarks, favourites, notes)
     isBookmarked(id) { const r = state.library[id]; return isLive(r) && !!r.bm; },
+    isFavourite(id) { const r = state.library[id]; return isLive(r) && !!r.fav; },
     getNote(id) { const r = state.library[id]; return isLive(r) ? r.note || '' : ''; },
     toggleBookmark(item) {
-      const cur = state.library[item.id];
-      const bm = isLive(cur) && cur.bm ? 0 : 1;
-      this.writeLibrary(item, { bm, note: isLive(cur) ? cur.note || '' : '' });
+      const cur = isLive(state.library[item.id]) ? state.library[item.id] : {};
+      const bm = cur.bm ? 0 : 1;
+      this.writeLibrary(item, { bm, fav: cur.fav ? 1 : 0, note: cur.note || '' });
       return !!bm;
     },
-    setNote(item, note) {
-      const cur = state.library[item.id];
-      this.writeLibrary(item, { bm: isLive(cur) ? cur.bm : 0, note: String(note || '').slice(0, 5000) });
+    toggleFavourite(item) {
+      const cur = isLive(state.library[item.id]) ? state.library[item.id] : {};
+      const fav = cur.fav ? 0 : 1;
+      this.writeLibrary(item, { bm: cur.bm ? 1 : 0, fav, note: cur.note || '' });
+      return !!fav;
     },
-    writeLibrary(item, { bm, note }) {
-      if (!bm && !note.trim()) { put('library', item.id, { del: true }); return; }
+    setNote(item, note) {
+      const cur = isLive(state.library[item.id]) ? state.library[item.id] : {};
+      this.writeLibrary(item, { bm: cur.bm ? 1 : 0, fav: cur.fav ? 1 : 0, note: String(note || '').slice(0, 5000) });
+    },
+    writeLibrary(item, { bm, fav = 0, note = '' }) {
+      if (!bm && !fav && !note.trim()) { put('library', item.id, { del: true }); return; }
       const prev = state.library[item.id];
-      put('library', item.id, { bm: bm ? 1 : 0, note: note.trim() ? note : '', item: isLive(prev) && prev.item ? prev.item : snapshotItem(item) });
+      put('library', item.id, { bm: bm ? 1 : 0, fav: fav ? 1 : 0, note: note.trim() ? note : '', item: isLive(prev) && prev.item ? prev.item : snapshotItem(item) });
     },
     library() { return liveEntries(state.library).map(([id, r]) => ({ id, ...r })); },
 
     // settings
     setting(key, fallback) { const r = state.settings[key]; return isLive(r) && 'v' in r ? r.v : fallback; },
     setSetting(key, v) { put('settings', key, { v }); },
+    removeSetting(key) { if (isLive(state.settings[key])) put('settings', key, { del: true }); },
+    // All live settings whose key starts with `prefix`, as [[key, value], ...] (used for goals, links, reading list...).
+    settingEntries(prefix) {
+      return Object.entries(state.settings).filter(([k, r]) => k.startsWith(prefix) && isLive(r) && 'v' in r).map(([k, r]) => [k, r.v]);
+    },
 
     // sync
     applyRemote(ns, remoteMap) {

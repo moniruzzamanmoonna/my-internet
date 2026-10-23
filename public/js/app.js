@@ -7,6 +7,11 @@ import { renderFeed } from './views/feed.js';
 import { renderSaved } from './views/saved.js';
 import { renderSources } from './views/sources.js';
 import { renderDiscover } from './views/discover.js';
+import { renderHome } from './views/home.js';
+import { renderEntertainment } from './views/entertainment.js';
+import { renderBangladesh } from './views/bangladesh.js';
+import { renderLearn } from './views/learn.js';
+import { createSession } from './hub/session.js';
 
 // ---------- storage (works even if the browser blocks it) ----------
 function safeStorage() {
@@ -26,7 +31,8 @@ const feeds = createFeeds({ store, api, storage });
 const $main = document.getElementById('main');
 
 const ctx = {
-  store, feeds, catalog: { categories: [], sources: [], sites: [], topics: [] }, countries: [],
+  store, feeds, storage, catalog: { categories: [], sources: [], sites: [], topics: [] }, countries: [],
+  fun: null, learn: null, bd: null, openSession() {},
   query: '', syncEnabled: false, onQuery: null, runSurprise: null,
   toast(message, { kind = 'info' } = {}) {
     const el = h('div', { class: `toast ${kind}`, role: kind === 'error' ? 'alert' : 'status', text: message });
@@ -131,13 +137,14 @@ function onSyncStatus(s) {
 
 // ---------- routing ----------
 let cleanup = null;
-const VIEWS = { feed: renderFeed, discover: renderDiscover, saved: renderSaved, sources: renderSources };
-const TITLES = { feed: 'Feed', discover: 'Discover', saved: 'Saved', sources: 'Sources' };
+const VIEWS = { home: renderHome, feed: renderFeed, bangladesh: renderBangladesh, entertainment: renderEntertainment, learn: renderLearn, discover: renderDiscover, saved: renderSaved, sources: renderSources };
+const TITLES = { home: 'Home', feed: 'Feed', bangladesh: 'Bangladesh', entertainment: 'Entertainment', learn: 'Learn', discover: 'Discover', saved: 'Saved', sources: 'Sources' };
+const MORE_ROUTES = ['discover', 'saved', 'sources'];
 let pendingSurprise = false;
 
 function parseHash() {
   const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
-  const name = VIEWS[parts[0]] ? parts[0] : 'feed';
+  const name = VIEWS[parts[0]] ? parts[0] : 'home';
   return { name, arg: parts[1] };
 }
 
@@ -156,9 +163,10 @@ function route() {
   document.querySelectorAll('.nav a').forEach((a) => {
     if (a.dataset.route === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
+  document.getElementById('btn-more').classList.toggle('current', MORE_ROUTES.includes(name));
   document.title = `${TITLES[name]} · My Internet`;
-  document.querySelector('.search').classList.toggle('dim', name === 'discover' || name === 'sources');
-  cleanup = VIEWS[name](ctx, $main, { cat: arg || 'all' });
+  document.querySelector('.search').classList.toggle('dim', name !== 'feed' && name !== 'saved');
+  cleanup = VIEWS[name](ctx, $main, { cat: arg || 'all', arg });
   window.scrollTo(0, 0);
   if (pendingSurprise && name === 'discover' && ctx.runSurprise) { pendingSurprise = false; ctx.runSurprise(); }
 }
@@ -190,6 +198,18 @@ document.getElementById('btn-surprise').addEventListener('click', () => {
   else { pendingSurprise = true; location.hash = '#/discover'; }
 });
 
+// ---------- session reminder + "More" menu ----------
+const session = createSession({ storage, toast: (m) => ctx.toast(m) });
+ctx.openSession = () => session.open();
+document.getElementById('btn-more').addEventListener('click', () => {
+  const dlg = document.getElementById('more-dialog');
+  dlg.replaceChildren(h('h2', { text: 'More' }),
+    h('ul', { class: 'plain more-links' }, [['#/discover', '🧭 Discover', 'Surprise me, random country, unknown topics'], ['#/saved', '🔖 Saved', 'Bookmarks, favourites and notes'], ['#/sources', '⚙️ Sources', 'Add, remove and manage your feeds']].map(([href, label, desc]) =>
+      h('li', {}, h('a', { href, onclick: () => dlg.close() }, label), h('span', { class: 'host', text: ` ${desc}` })))),
+    h('form', { method: 'dialog', class: 'dlg-close' }, h('button', { class: 'btn', text: 'Close' })));
+  dlg.showModal();
+});
+
 // ---------- boot ----------
 let feedsStarted = false;
 function startFeeds() {
@@ -211,7 +231,10 @@ async function getJSON(url) {
 
 async function boot() {
   try {
-    [ctx.catalog, ctx.countries] = await Promise.all([getJSON('/data/catalog.json'), getJSON('/data/countries.json').then((d) => d.countries)]);
+    [ctx.catalog, ctx.countries, ctx.bd, ctx.fun, ctx.learn] = await Promise.all([
+      getJSON('/data/catalog.json'), getJSON('/data/countries.json').then((d) => d.countries),
+      getJSON('/data/bd.json'), getJSON('/data/fun.json'), getJSON('/data/learn.json'),
+    ]);
   } catch (e) {
     $main.replaceChildren(h('div', { class: 'empty' }, h('h1', { text: 'Couldn’t start' }), h('p', { text: 'The app’s data files failed to load. Check your connection and reload.' })));
     return;

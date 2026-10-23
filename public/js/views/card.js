@@ -42,7 +42,7 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
 
   root.append(...[
     h('div', { class: 'body' },
-      h('div', { class: 'meta' }, dot, h('span', { class: 'from', text: item.sname || '' }), catName && h('span', { class: 'cat', text: catName }), when),
+      h('div', { class: 'meta' }, dot, h('span', { class: 'from', text: item.sname || '' }), catName && h('span', { class: 'cat', text: catName }), when, item.badge ? h('span', { class: 'badge cached', text: `◐ ${item.badge}`, title: 'An older snapshot saved in this browser. Not live.' }) : null),
       h('h3', { class: 'title' }, link),
       item.summary && h('p', { class: 'summary', text: item.summary }),
     ),

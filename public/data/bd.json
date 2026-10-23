@@ -1,0 +1,91 @@
+{
+  "note": "Static reference data written by hand (not live). Division/district lists follow the current administrative structure (8 divisions, 64 districts). Phone numbers were checked on 22 Oct 2026 against published lists dated 2020–2022 (sources noted per entry): confirm on the official website before relying on them.",
+  "divisions": [
+    { "id": "barishal", "name": "Barishal", "bn": "বরিশাল", "wiki": "Barisal Division", "districts": ["Barguna", "Barishal", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur"] },
+    { "id": "chattogram", "name": "Chattogram", "bn": "চট্টগ্রাম", "wiki": "Chittagong Division", "districts": ["Bandarban", "Brahmanbaria", "Chandpur", "Chattogram", "Cox's Bazar", "Cumilla", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati"] },
+    { "id": "dhaka", "name": "Dhaka", "bn": "ঢাকা", "wiki": "Dhaka Division", "districts": ["Dhaka", "Faridpur", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari", "Shariatpur", "Tangail"] },
+    { "id": "khulna", "name": "Khulna", "bn": "খুলনা", "wiki": "Khulna Division", "districts": ["Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Khulna", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira"] },
+    { "id": "mymensingh", "name": "Mymensingh", "bn": "ময়মনসিংহ", "wiki": "Mymensingh Division", "districts": ["Jamalpur", "Mymensingh", "Netrokona", "Sherpur"] },
+    { "id": "rajshahi", "name": "Rajshahi", "bn": "রাজশাহী", "wiki": "Rajshahi Division", "districts": ["Bogura", "Chapainawabganj", "Joypurhat", "Naogaon", "Natore", "Pabna", "Rajshahi", "Sirajganj"] },
+    { "id": "rangpur", "name": "Rangpur", "bn": "রংপুর", "wiki": "Rangpur Division", "districts": ["Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon"] },
+    { "id": "sylhet", "name": "Sylhet", "bn": "সিলেট", "wiki": "Sylhet Division", "districts": ["Habiganj", "Moulvibazar", "Sunamganj", "Sylhet"] }
+  ],
+  "destinations": [
+    { "name": "Cox's Bazar", "division": "Chattogram", "wiki": "Cox's Bazar", "blurb": "A seaside town on the Bay of Bengal, known for its very long sandy beach." },
+    { "name": "Sundarbans", "division": "Khulna", "wiki": "Sundarbans", "blurb": "A vast mangrove forest shared with India and home to the Royal Bengal tiger; a UNESCO World Heritage Site." },
+    { "name": "Saint Martin's Island", "division": "Chattogram", "wiki": "Saint Martin's Island", "blurb": "A small coral island in the Bay of Bengal, near Teknaf." },
+    { "name": "Sajek Valley", "division": "Chattogram", "wiki": "Sajek Valley", "blurb": "A hill valley in the Chittagong Hill Tracts (Rangamati district), known for clouds and long views." },
+    { "name": "Kaptai Lake", "division": "Chattogram", "wiki": "Kaptai Lake", "blurb": "A large artificial lake in Rangamati, created by a dam on the Karnaphuli river." },
+    { "name": "Ratargul Swamp Forest", "division": "Sylhet", "wiki": "Ratargul Swamp Forest", "blurb": "A freshwater swamp forest near Gowainghat, best explored by boat in the rainy season." },
+    { "name": "Jaflong", "division": "Sylhet", "wiki": "Jaflong", "blurb": "A hill-and-river area on the Meghalaya border in Sylhet." },
+    { "name": "Sreemangal", "division": "Sylhet", "wiki": "Sreemangal", "blurb": "Known as the tea capital of Bangladesh, surrounded by tea estates." },
+    { "name": "Tanguar Haor", "division": "Sylhet", "wiki": "Tanguar Haor", "blurb": "A large freshwater wetland in Sunamganj, important for migratory birds." },
+    { "name": "Kuakata", "division": "Barishal", "wiki": "Kuakata", "blurb": "A beach in Patuakhali where you can watch both sunrise and sunset over the sea." },
+    { "name": "Somapura Mahavihara (Paharpur)", "division": "Rajshahi", "wiki": "Somapura Mahavihara", "blurb": "Ruins of a major Buddhist monastery in Naogaon; a UNESCO World Heritage Site." },
+    { "name": "Mahasthangarh", "division": "Rajshahi", "wiki": "Mahasthangarh", "blurb": "Ruins of an ancient city near Bogura, among the earliest urban sites in Bangladesh." },
+    { "name": "Puthia Temple Complex", "division": "Rajshahi", "wiki": "Puthia Temple Complex", "blurb": "A cluster of historic Hindu temples in Rajshahi district." },
+    { "name": "Mosque City of Bagerhat", "division": "Khulna", "wiki": "Mosque City of Bagerhat", "blurb": "A historic mosque city including the Sixty Dome Mosque; a UNESCO World Heritage Site." },
+    { "name": "Lalbagh Fort", "division": "Dhaka", "wiki": "Lalbagh Fort", "blurb": "A 17th-century Mughal fort complex in old Dhaka." },
+    { "name": "Ahsan Manzil", "division": "Dhaka", "wiki": "Ahsan Manzil", "blurb": "The pink palace on the Buriganga river, once the residence of the Dhaka Nawab family." },
+    { "name": "Sonargaon", "division": "Dhaka", "wiki": "Sonargaon", "blurb": "A historic town near Dhaka that was an important centre in medieval Bengal." }
+  ],
+  "history": [
+    { "era": "Ancient", "title": "Early kingdoms and the Pala era", "text": "The region that is now Bangladesh was home to early Bengal kingdoms such as Pundravardhana and Vanga. In the 8th century the Pala dynasty ruled; the great monastery of Somapura Mahavihara at Paharpur was built under Dharmapala.", "wiki": "Pala Empire" },
+    { "era": "1300s–1500s", "title": "The Bengal Sultanate", "text": "Between the 14th and 16th centuries Bengal was ruled by independent sultans, a period of trade, architecture and the growth of Bengali literature.", "wiki": "Bengal Sultanate" },
+    { "era": "1610", "title": "Dhaka becomes a Mughal capital", "text": "In 1610 Dhaka became the provincial capital of Mughal Bengal under Islam Khan I, and grew into a major trading city.", "wiki": "History of Dhaka" },
+    { "era": "1757", "title": "Battle of Plassey", "text": "In 1757 the East India Company defeated the Nawab of Bengal at Plassey, beginning British dominance in Bengal that lasted until 1947.", "wiki": "Battle of Plassey" },
+    { "era": "1905", "title": "Partition of Bengal", "text": "Lord Curzon partitioned Bengal in 1905, creating a province with Dhaka as its capital. It was annulled in 1911 after widespread protest.", "wiki": "Partition of Bengal (1905)" },
+    { "era": "1947", "title": "Partition of India", "text": "In 1947 the eastern part of Bengal became East Bengal, later East Pakistan, within the new state of Pakistan.", "wiki": "Partition of India" },
+    { "era": "1952", "title": "The Language Movement", "text": "On 21 February 1952 students and citizens in Dhaka protested for Bangla to be a state language and were fired upon. The day is remembered as Ekushey February; UNESCO proclaimed 21 February International Mother Language Day in 1999.", "wiki": "Bengali Language Movement" },
+    { "era": "1971", "title": "The Liberation War", "text": "Independence was declared on 26 March 1971 and the war ended with victory on 16 December 1971, now celebrated as Victory Day.", "wiki": "Bangladesh Liberation War" },
+    { "era": "1972", "title": "The Constitution", "text": "The Constituent Assembly adopted the Constitution of Bangladesh on 4 November 1972; it came into effect on 16 December 1972.", "wiki": "Constitution of Bangladesh" }
+  ],
+  "culture": [
+    { "title": "Pohela Boishakh", "text": "The Bengali New Year, celebrated in Bangladesh on 14 April with fairs, processions and traditional food.", "wiki": "Pohela Boishakh" },
+    { "title": "Rabindranath Tagore and Kazi Nazrul Islam", "text": "Tagore, the 1913 Nobel laureate in Literature, wrote the words of 'Amar Shonar Bangla', Bangladesh's national anthem. Kazi Nazrul Islam is the national poet of Bangladesh.", "wiki": "Rabindranath Tagore" },
+    { "title": "Baul songs", "text": "A mystical folk song tradition of Bengal that UNESCO recognises as intangible cultural heritage; Lalon Fakir is its best-known figure.", "wiki": "Baul" },
+    { "title": "Jamdani weaving", "text": "A fine, hand-woven fabric from the Dhaka region, recognised by UNESCO as intangible cultural heritage.", "wiki": "Jamdani" },
+    { "title": "Mangal Shobhajatra", "text": "A colourful procession held on Pohela Boishakh in Dhaka, recognised by UNESCO as intangible cultural heritage.", "wiki": "Mangal Shobhajatra" },
+    { "title": "Rickshaw art", "text": "The painted decorations of Dhaka's cycle rickshaws, recognised by UNESCO as intangible cultural heritage in 2023.", "wiki": "Rickshaw art in Bangladesh" },
+    { "title": "Nakshi kantha", "text": "Embroidered quilts traditionally made from layers of old cloth, with stitched patterns that tell stories.", "wiki": "Nakshi kantha" }
+  ],
+  "emergency": [
+    { "number": "999", "name": "National emergency service (police, fire, ambulance)", "source": "Wikipedia 'Telephone numbers in Bangladesh'; The Daily Star, Oct 2020" },
+    { "number": "109", "name": "Helpline for violence against women and children", "source": "Wikipedia 'Telephone numbers in Bangladesh'; The Daily Star, Oct 2020; Prothom Alo, Apr 2020" },
+    { "number": "333", "name": "National helpline (government information and services)", "source": "Wikipedia 'Telephone numbers in Bangladesh'; The Daily Star, Oct 2020" },
+    { "number": "16263", "name": "Health call centre hotline (Directorate General of Health Services)", "source": "Prothom Alo, Apr 2020" },
+    { "number": "102", "name": "Bangladesh Fire Service & Civil Defence", "source": "Wikipedia 'Telephone numbers in Bangladesh'" },
+    { "number": "106", "name": "Anti-Corruption Commission", "source": "Wikipedia 'Telephone numbers in Bangladesh'" },
+    { "number": "105", "name": "National ID (NID) services", "source": "Wikipedia 'Telephone numbers in Bangladesh'" },
+    { "number": "131", "name": "Bangladesh Railway", "source": "Wikipedia 'Telephone numbers in Bangladesh'" }
+  ],
+  "services": [
+    { "group": "Government & documents", "name": "National Portal of Bangladesh", "url": "https://bangladesh.gov.bd", "desc": "Gateway to government offices and services." },
+    { "group": "Government & documents", "name": "e-Passport", "url": "https://www.epassport.gov.bd", "desc": "Passport information and applications." },
+    { "group": "Government & documents", "name": "NID services", "url": "https://services.nidw.gov.bd", "desc": "National ID card services." },
+    { "group": "Government & documents", "name": "Land services", "url": "https://land.gov.bd", "desc": "Land records and related services." },
+    { "group": "Government & documents", "name": "National Board of Revenue", "url": "https://nbr.gov.bd", "desc": "Tax and customs information." },
+    { "group": "Government & documents", "name": "Bangladesh Bank", "url": "https://www.bb.org.bd", "desc": "The central bank." },
+    { "group": "Travel & transport", "name": "Bangladesh Railway e-ticket", "url": "https://eticket.railway.gov.bd", "desc": "Online train tickets (site named in The Business Standard, Mar 2022)." },
+    { "group": "Travel & transport", "name": "Bangladesh Railway", "url": "https://railway.gov.bd", "desc": "Railway information and notices." },
+    { "group": "Travel & transport", "name": "BRTA", "url": "https://www.brta.gov.bd", "desc": "Road transport authority: licences and vehicle services." },
+    { "group": "Education & jobs", "name": "Ministry of Education", "url": "https://moedu.gov.bd", "desc": "Education policy and notices." },
+    { "group": "Education & jobs", "name": "Education board results", "url": "https://educationboardresults.gov.bd", "desc": "Public examination results." },
+    { "group": "Education & jobs", "name": "Bangladesh Public Service Commission", "url": "https://www.bpsc.gov.bd", "desc": "BCS and other government recruitment." },
+    { "group": "Education & jobs", "name": "Government job applications (Teletalk)", "url": "https://alljobs.teletalk.com.bd", "desc": "Online applications for government job circulars." },
+    { "group": "Agriculture & weather", "name": "Ministry of Agriculture", "url": "https://moa.gov.bd", "desc": "Agriculture policy and notices." },
+    { "group": "Agriculture & weather", "name": "Department of Agricultural Extension", "url": "https://dae.gov.bd", "desc": "Advice and services for farmers." },
+    { "group": "Agriculture & weather", "name": "Bangladesh Agricultural Research Institute", "url": "https://www.bari.gov.bd", "desc": "Crop research and varieties." },
+    { "group": "Agriculture & weather", "name": "Bangladesh Rice Research Institute", "url": "https://brri.gov.bd", "desc": "Rice research and varieties." },
+    { "group": "Agriculture & weather", "name": "Bangladesh Meteorological Department", "url": "https://www.bmd.gov.bd", "desc": "Official weather forecasts and warnings." },
+    { "group": "Agriculture & weather", "name": "Flood Forecasting & Warning Centre", "url": "https://www.ffwc.gov.bd", "desc": "River levels and flood forecasts." },
+    { "group": "Health & safety", "name": "Directorate General of Health Services", "url": "https://dghs.gov.bd", "desc": "Public health information." },
+    { "group": "Health & safety", "name": "Bangladesh Police", "url": "https://www.police.gov.bd", "desc": "Police services and information." },
+    { "group": "Health & safety", "name": "Fire Service & Civil Defence", "url": "https://fireservice.gov.bd", "desc": "Fire and rescue service." }
+  ],
+  "newsLinks": {
+    "jobs": ["Bangladesh Public Service Commission", "Government job applications (Teletalk)"],
+    "education": ["Ministry of Education", "Education board results"],
+    "agriculture": ["Ministry of Agriculture", "Department of Agricultural Extension", "Bangladesh Meteorological Department"]
+  }
+}

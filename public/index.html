@@ -17,7 +17,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="topbar">
     <div class="topbar-row">
-      <a class="brand" href="#/feed" aria-label="My Internet — home">
+      <a class="brand" href="#/home" aria-label="My Internet — home">
         <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8"/><path d="M6 50h88M50 6c-26 24-26 64 0 88M50 6c26 24 26 64 0 88" fill="none" stroke="currentColor" stroke-width="6"/></svg>
         <span>My Internet</span>
       </a>
@@ -26,16 +26,22 @@
       </form>
       <div class="top-actions">
         <button id="btn-surprise" class="icon-btn accent" type="button" title="Surprise me" aria-label="Surprise me">✨</button>
+        <button id="btn-session" class="icon-btn pill-btn" type="button" title="Set a browsing time" aria-label="Set a browsing time">⏳</button>
         <button id="btn-refresh" class="icon-btn" type="button" title="Refresh all sources" aria-label="Refresh all sources">↻</button>
         <button id="btn-theme" class="icon-btn" type="button" title="Theme" aria-label="Change theme">🌓</button>
         <button id="btn-account" class="icon-btn" type="button" title="Account and sync" aria-label="Account and sync">👤<span id="sync-dot" class="sync-dot" hidden></span></button>
       </div>
     </div>
     <nav class="nav" aria-label="Main">
+      <a href="#/home" data-route="home"><span class="n-ico" aria-hidden="true">🏠</span><span>Home</span></a>
       <a href="#/feed" data-route="feed"><span class="n-ico" aria-hidden="true">📰</span><span>Feed</span></a>
-      <a href="#/discover" data-route="discover"><span class="n-ico" aria-hidden="true">🧭</span><span>Discover</span></a>
-      <a href="#/saved" data-route="saved"><span class="n-ico" aria-hidden="true">🔖</span><span>Saved</span></a>
-      <a href="#/sources" data-route="sources"><span class="n-ico" aria-hidden="true">⚙️</span><span>Sources</span></a>
+      <a href="#/bangladesh" data-route="bangladesh"><span class="n-ico" aria-hidden="true">🇧🇩</span><span>Bangladesh</span></a>
+      <a href="#/entertainment" data-route="entertainment"><span class="n-ico" aria-hidden="true">🎬</span><span><span class="l-full">Entertainment</span><span class="l-short">Fun</span></span></a>
+      <a href="#/learn" data-route="learn"><span class="n-ico" aria-hidden="true">🎓</span><span>Learn</span></a>
+      <a href="#/discover" data-route="discover" class="secondary"><span class="n-ico" aria-hidden="true">🧭</span><span>Discover</span></a>
+      <a href="#/saved" data-route="saved" class="secondary"><span class="n-ico" aria-hidden="true">🔖</span><span>Saved</span></a>
+      <a href="#/sources" data-route="sources" class="secondary"><span class="n-ico" aria-hidden="true">⚙️</span><span>Sources</span></a>
+      <button type="button" id="btn-more" class="more-btn" aria-haspopup="dialog"><span class="n-ico" aria-hidden="true">⋯</span><span>More</span></button>
     </nav>
   </header>
 
@@ -43,6 +49,8 @@
   <footer class="foot">Articles link to their publishers. Discovery text from Wikipedia/Wikivoyage (CC BY-SA 4.0). No tracking, no ads, no algorithmic ranking.</footer>
 
   <dialog id="account"></dialog>
+  <dialog id="session-dialog"></dialog>
+  <dialog id="more-dialog"></dialog>
   <div id="toasts" aria-live="polite" aria-atomic="false"></div>
   <noscript><p class="boot">My Internet needs JavaScript to run.</p></noscript>
   <script type="module" src="/js/app.js"></script>
