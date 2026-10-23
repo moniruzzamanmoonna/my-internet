@@ -161,3 +161,7 @@ firestore.rules         per-user data access rules
 ## Soft Focus theme
 
 Colours are CSS variables at the top of `public/css/app.css` (light and dark sets, AA contrast checked). The 🌓/☀️/🌙 button cycles Match device → Light → Dark, saves the choice in this browser, follows the device setting while on "Match device", and updates the phone browser bar colour.
+
+## Magazine layout (picture-first)
+
+The 🎨 button in the header switches between **Soft Focus** (default) and **Magazine**: a large lead story with a wide photo, then a 2–3 column grid of picture-topped cards, serif headlines and uppercase section labels. It is saved in this browser, works with light and dark, and applies to every article list. Photos come from each publisher's own feed and are shown as they are; articles whose feed has no image stay text-only, and small feed thumbnails can look soft when enlarged. Layout idea only; no third-party design or branding is copied.

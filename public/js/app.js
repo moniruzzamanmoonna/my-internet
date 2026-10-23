@@ -94,6 +94,31 @@ document.getElementById('btn-theme').addEventListener('click', () => {
 });
 applyTheme(currentTheme());
 
+// ---------- layout style: Soft Focus (default) or Magazine (big photos) ----------
+const STYLES = [
+  ['soft', 'Soft Focus', 'Calm and compact: small thumbnails, lots of whitespace.'],
+  ['magazine', 'Magazine', 'Big photos: a large lead story, then a two-column grid of picture-first cards.'],
+];
+function currentStyle() { try { return JSON.parse(storage.getItem('mi.style') || '"soft"') === 'magazine' ? 'magazine' : 'soft'; } catch { return 'soft'; } }
+function applyStyle(st) {
+  if (st === 'magazine') document.documentElement.dataset.style = 'magazine'; else delete document.documentElement.dataset.style;
+  try { storage.setItem('mi.style', JSON.stringify(st)); } catch { /* ignore */ }
+}
+document.getElementById('btn-style').addEventListener('click', () => {
+  const dlg = document.getElementById('style-dialog');
+  const now = currentStyle();
+  dlg.replaceChildren(h('h2', { text: 'Layout style' }),
+    h('p', { class: 'hint', text: 'Changes how pages look. Your light/dark choice is separate (the 🌓 button). Photos come from the publishers’ own feeds, so articles without a picture stay text-only.' }),
+    h('div', { class: 'style-opts', role: 'radiogroup', 'aria-label': 'Layout style' }, STYLES.map(([id, name, desc]) => {
+      const input = h('input', { type: 'radio', name: 'mi-style', value: id });
+      input.checked = id === now;
+      input.addEventListener('change', () => { applyStyle(id); });
+      return h('label', { class: 'style-opt' }, input, h('span', {}, h('strong', { text: name }), h('span', { class: 'hint', text: desc })));
+    })),
+    h('form', { method: 'dialog', class: 'dlg-close' }, h('button', { class: 'btn primary', text: 'Done' })));
+  dlg.showModal();
+});
+
 // ---------- sync (optional) ----------
 let sync = null;
 let syncStatus = { state: 'off' };

@@ -370,3 +370,49 @@ main { padding: 20px 20px 32px; }
 :focus-visible { outline-color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation-duration: .01ms !important; } }
 @media (min-width: 760px) { main { padding: 28px 24px 48px; } }
+
+
+/* ================= Style: Magazine (opt-in via the 🎨 button) =================
+   Picture-first layout: a large lead story, then a two-column grid of image-topped cards.
+   Colours still follow light/dark. Only articles that have a photo in the feed get one. */
+.style-opts { display: grid; gap: 10px; margin: 12px 0; }
+.style-opt { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; cursor: pointer; }
+.style-opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.style-opt .hint { display: block; margin: 2px 0 0; }
+.style-opt input { margin-top: 4px; accent-color: var(--accent); }
+
+html[data-style="magazine"] {
+  --serif: Georgia, "Iowan Old Style", "Noto Serif", "Noto Serif Bengali", "Nirmala UI", serif;
+  --radius: 4px;
+  --shadow: none;
+}
+html[data-style="magazine"] main { max-width: 1120px; }
+html[data-style="magazine"] .card:not(.hub) { display: flex; flex-direction: column; gap: 10px; padding: 0 0 16px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; background: transparent; margin-bottom: 8px; }
+html[data-style="magazine"] .card:not(.hub):hover { border-color: var(--line); border-bottom-color: var(--accent); }
+html[data-style="magazine"] .card:not(.hub) .thumb { order: -1; width: 100%; height: auto; aspect-ratio: 16 / 10; border-radius: 4px; object-fit: cover; }
+html[data-style="magazine"] .card:not(.hub) .meta { text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; }
+html[data-style="magazine"] .card:not(.hub) .meta .from { color: var(--accent); }
+html[data-style="magazine"] .card:not(.hub) .title { font-family: var(--serif); font-size: 1.3rem; line-height: 1.3; }
+html[data-style="magazine"] .card:not(.hub) .summary { -webkit-line-clamp: 3; }
+html[data-style="magazine"] .day-label { font-family: var(--serif); font-size: 1.5rem; padding-bottom: 8px; margin: 28px 0 14px; border-bottom: 2px solid var(--ink); text-transform: none; letter-spacing: 0; color: var(--ink); }
+html[data-style="magazine"] .page-title { font-family: var(--serif); }
+html[data-style="magazine"] .chip { border-radius: 4px; }
+html[data-style="magazine"] .topbar { border-bottom: 2px solid var(--ink); }
+
+/* Day sections and plain article lists become grids; the first story leads. */
+@media (min-width: 720px) {
+  html[data-style="magazine"] .day,
+  html[data-style="magazine"] main div:has(> .card:not(.hub)) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 28px; align-items: start; }
+  html[data-style="magazine"] .day > .day-label { grid-column: 1 / -1; margin-bottom: 0; }
+  html[data-style="magazine"] .day > .card:nth-child(2),
+  html[data-style="magazine"] main div:has(> .card:not(.hub)) > .card:first-child { grid-column: 1 / -1; }
+  html[data-style="magazine"] .day > .card:nth-child(2) .thumb,
+  html[data-style="magazine"] main div:has(> .card:not(.hub)) > .card:first-child .thumb { aspect-ratio: 21 / 9; }
+  html[data-style="magazine"] .day > .card:nth-child(2) .title,
+  html[data-style="magazine"] main div:has(> .card:not(.hub)) > .card:first-child .title { font-size: 1.9rem; }
+}
+@media (min-width: 1000px) {
+  html[data-style="magazine"] .day,
+  html[data-style="magazine"] main div:has(> .card:not(.hub)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+html[data-style="magazine"] .card:not(.hub) .thumb { max-height: 480px; }
