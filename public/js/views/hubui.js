@@ -77,7 +77,7 @@ export function hubCard(ctx, entry, { onHide, typeLabel, links = [] } = {}) {
   const about = entry.wiki ? aboutButton(entry.wiki) : null;
 
   const linkEls = [
-    h('a', { class: 'btn sm', href: item.link, target: '_blank', rel: 'noopener noreferrer' }, ['song', 'video'].includes(entry.type) && entry.q ? 'Find on YouTube ↗' : entry.link ? 'Open ↗' : 'Wikipedia ↗'),
+    h('a', { class: 'btn sm', href: item.link, target: '_blank', rel: 'noopener noreferrer' }, entry.linkLabel || (['song', 'video'].includes(entry.type) && entry.q ? 'Find on YouTube ↗' : entry.link ? 'Open ↗' : 'Wikipedia ↗')),
     entry.q && entry.type === 'podcast' ? h('a', { class: 'btn sm', href: spotify(entry.q), target: '_blank', rel: 'noopener noreferrer' }, 'Search Spotify ↗') : null,
     entry.q && entry.type === 'podcast' ? h('a', { class: 'btn sm', href: yt(entry.q), target: '_blank', rel: 'noopener noreferrer' }, 'Search YouTube ↗') : null,
     ...links,

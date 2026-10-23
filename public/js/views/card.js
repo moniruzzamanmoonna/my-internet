@@ -1,5 +1,6 @@
 // The article card, shared by the feed, saved items and discovery.
 import { h, timeAgo, debounce } from '../util.js';
+import { getCount, setLoved, isLoved } from '../engage.js';
 
 export function articleCard(ctx, item, { showNote = false } = {}) {
   const { store } = ctx;
@@ -19,6 +20,23 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
     ctx.toast(on ? 'Bookmarked' : 'Bookmark removed');
     paint();
   } }, h('span', { class: 'ico', 'aria-hidden': 'true', text: '🔖' }), h('span', { class: 'lbl', text: 'Save' }));
+
+  // ❤ is shared: the number is how many visitors loved this article.
+  const loveBtn = h('button', { type: 'button', class: 'act love', 'aria-pressed': String(isLoved(item.id)), title: 'Love this article' },
+    h('span', { class: 'ico', 'aria-hidden': 'true', text: '❤' }), h('span', { class: 'lbl', text: 'Love' }));
+  const loveCount = h('span', { class: 'love-n', 'aria-live': 'polite' });
+  loveBtn.append(loveCount);
+  const showCount = (n) => { loveCount.textContent = n > 0 ? String(n) : ''; };
+  getCount(item.id).then((n) => { if (n !== null) showCount(n); else loveBtn.title = 'Love counter unavailable right now'; });
+  loveBtn.addEventListener('click', async () => {
+    const want = loveBtn.getAttribute('aria-pressed') !== 'true';
+    loveBtn.disabled = true;
+    const n = await setLoved(item.id, want);
+    loveBtn.disabled = false;
+    if (n === null) { ctx.toast("Couldn't reach the love counter. Try again."); return; }
+    loveBtn.setAttribute('aria-pressed', String(want));
+    showCount(n);
+  });
 
   const readBtn = h('button', { type: 'button', class: 'act', 'aria-pressed': 'false', onclick: () => {
     store.setRead(item.id, !store.isRead(item.id), item.cat); paint();
@@ -47,7 +65,7 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
       item.summary && h('p', { class: 'summary', text: item.summary }),
     ),
     img,
-    h('div', { class: 'actions' }, bmBtn, readBtn, noteBtn),
+    h('div', { class: 'actions' }, loveBtn, bmBtn, readBtn, noteBtn),
     box,
   ].filter(Boolean)); // native append() would print "null" for a missing image
 

@@ -1,3 +1,4 @@
+import { recordVisit } from './engage.js';
 import { h, sourceId, debounce } from './util.js';
 import { createStore } from './state.js';
 import * as api from './api.js';
@@ -10,6 +11,9 @@ import { renderDiscover } from './views/discover.js';
 import { renderHome } from './views/home.js';
 import { renderEntertainment } from './views/entertainment.js';
 import { renderBangladesh } from './views/bangladesh.js';
+import { renderJobs, createJobNotifier } from './views/jobs.js';
+import { renderAI } from './views/ai.js';
+import { renderNovel } from './views/novel.js';
 import { renderLearn } from './views/learn.js';
 import { createSession } from './hub/session.js';
 
@@ -137,9 +141,9 @@ function onSyncStatus(s) {
 
 // ---------- routing ----------
 let cleanup = null;
-const VIEWS = { home: renderHome, feed: renderFeed, bangladesh: renderBangladesh, entertainment: renderEntertainment, learn: renderLearn, discover: renderDiscover, saved: renderSaved, sources: renderSources };
-const TITLES = { home: 'Home', feed: 'Feed', bangladesh: 'Bangladesh', entertainment: 'Entertainment', learn: 'Learn', discover: 'Discover', saved: 'Saved', sources: 'Sources' };
-const MORE_ROUTES = ['discover', 'saved', 'sources'];
+const VIEWS = { home: renderHome, feed: renderFeed, bangladesh: renderBangladesh, entertainment: renderEntertainment, learn: renderLearn, ai: renderAI, jobs: renderJobs, novel: renderNovel, discover: renderDiscover, saved: renderSaved, sources: renderSources };
+const TITLES = { home: 'Home', feed: 'Feed', bangladesh: 'Bangladesh', entertainment: 'Entertainment', learn: 'Learn', ai: 'AI', jobs: 'Jobs', novel: 'Novels', discover: 'Discover', saved: 'Saved', sources: 'Sources' };
+const MORE_ROUTES = ['jobs', 'ai', 'novel', 'discover', 'saved', 'sources'];
 let pendingSurprise = false;
 
 function parseHash() {
@@ -201,10 +205,11 @@ document.getElementById('btn-surprise').addEventListener('click', () => {
 // ---------- session reminder + "More" menu ----------
 const session = createSession({ storage, toast: (m) => ctx.toast(m) });
 ctx.openSession = () => session.open();
+ctx.jobNotifier = createJobNotifier(ctx);
 document.getElementById('btn-more').addEventListener('click', () => {
   const dlg = document.getElementById('more-dialog');
   dlg.replaceChildren(h('h2', { text: 'More' }),
-    h('ul', { class: 'plain more-links' }, [['#/discover', '🧭 Discover', 'Surprise me, random country, unknown topics'], ['#/saved', '🔖 Saved', 'Bookmarks, favourites and notes'], ['#/sources', '⚙️ Sources', 'Add, remove and manage your feeds']].map(([href, label, desc]) =>
+    h('ul', { class: 'plain more-links' }, [['#/jobs', '💼 Jobs', 'Bangladesh job circulars by your preferences'], ['#/ai', '🤖 AI', 'AI news, explained simply'], ['#/novel', '📖 Novels', 'Bangla and world classics'], ['#/discover', '🧭 Discover', 'Surprise me, random country, unknown topics'], ['#/saved', '🔖 Saved', 'Bookmarks, favourites and notes'], ['#/sources', '⚙️ Sources', 'Add, remove and manage your feeds']].map(([href, label, desc]) =>
       h('li', {}, h('a', { href, onclick: () => dlg.close() }, label), h('span', { class: 'host', text: ` ${desc}` })))),
     h('form', { method: 'dialog', class: 'dlg-close' }, h('button', { class: 'btn', text: 'Close' })));
   dlg.showModal();
@@ -216,6 +221,7 @@ function startFeeds() {
   if (feedsStarted || authGate) return;
   feedsStarted = true;
   feeds.refresh();
+  ctx.jobNotifier.sync();
   let hiddenAt = 0;
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) hiddenAt = Date.now();
@@ -231,9 +237,9 @@ async function getJSON(url) {
 
 async function boot() {
   try {
-    [ctx.catalog, ctx.countries, ctx.bd, ctx.fun, ctx.learn] = await Promise.all([
+    [ctx.catalog, ctx.countries, ctx.bd, ctx.fun, ctx.learn, ctx.ai, ctx.novels] = await Promise.all([
       getJSON('/data/catalog.json'), getJSON('/data/countries.json').then((d) => d.countries),
-      getJSON('/data/bd.json'), getJSON('/data/fun.json'), getJSON('/data/learn.json'),
+      getJSON('/data/bd.json'), getJSON('/data/fun.json'), getJSON('/data/learn.json'), getJSON('/data/ai.json'), getJSON('/data/novels.json'),
     ]);
   } catch (e) {
     $main.replaceChildren(h('div', { class: 'empty' }, h('h1', { text: 'Couldn’t start' }), h('p', { text: 'The app’s data files failed to load. Check your connection and reload.' })));
@@ -241,6 +247,10 @@ async function boot() {
   }
   if (storage.memory) ctx.toast('Your browser is blocking storage, so changes won’t be remembered after you close this tab.', { kind: 'error' });
   feeds.loadCache();
+  recordVisit().then((n) => {
+    const el = document.getElementById('visits');
+    if (el && n !== null) { el.textContent = `· ${n.toLocaleString()} total visits`; el.hidden = false; }
+  });
 
   let config = { firebase: null, authRequired: false };
   try { config = await api.getConfig(); } catch { /* local mode */ }

@@ -103,8 +103,8 @@ function discover(ctx, body) {
     if (!data) { status.append(h('p', { class: 'hint', text: 'Loading from publishers…' }), h('div', { class: 'skeleton' })); return; }
     status.append(
       h('div', { class: 'panel-head' }, h('h2', { text: 'Latest in science, technology and AI' }), h('button', { type: 'button', class: 'btn sm', onclick: load }, 'Refresh')),
-      h('div', { class: 'badges' }, data.live ? badge('live', `Live: ${data.live} of ${sources.length} sources`) : null, data.cached ? badge('cached', `Cached snapshot: ${data.cached}`) : null, data.failed ? badge('bad', `Unavailable: ${data.failed}`) : null),
-      data.cached ? h('p', { class: 'hint warn-text', text: 'Some items come from an older saved snapshot and are marked “Cached”.' }) : null,
+      h('div', { class: 'badges' }, data.live ? badge('live', `Live: ${data.live} of ${sources.length} sources`) : '', data.cached ? badge('cached', `Cached snapshot: ${data.cached}`) : '', data.failed ? badge('bad', `Unavailable: ${data.failed}`) : ''),
+      data.cached ? h('p', { class: 'hint warn-text', text: 'Some items come from an older saved snapshot and are marked “Cached”.' }) : '',
       h('p', { class: 'hint', text: 'Newest first from the publishers’ own feeds. “AI” is a keyword filter over the same articles. Nothing here is generated or summarised by this app.' }));
   }
   function drawChips() {

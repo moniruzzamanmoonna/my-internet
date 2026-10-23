@@ -1,7 +1,7 @@
 {
   "name": "my-internet",
   "version": "1.0.0",
-  "description": "My Internet \u2014 a personal discovery dashboard: chronological RSS/Atom reader with discovery features.",
+  "description": "My Internet — a personal discovery dashboard: chronological RSS/Atom reader with discovery features.",
   "private": true,
   "type": "module",
   "engines": {
@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@netlify/blobs": "^11.1.6",
     "fast-xml-parser": "^5.11.2",
     "jose": "^6.2.13"
   },

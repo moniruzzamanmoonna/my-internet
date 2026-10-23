@@ -71,6 +71,8 @@ const addSource = async (url, cat, name = '') => {
 await step('app boots with starter sources; unreachable real feeds fail gracefully (sandbox has no internet)', async () => {
   await page.goto(BASE);
   await page.waitForSelector('.brand');
+  assert.match(await page.locator('.nav a[aria-current=page]').textContent(), /Home/, 'Home is the default page');
+  await page.goto(`${BASE}/#/feed`);
   await page.waitForSelector('.status .warn', { timeout: 30000 });
   assert.match(await page.textContent('.status .warn'), /couldn.t load/);
   assert.ok(await page.locator('.nav a[aria-current=page]').textContent().then((t) => /Feed/.test(t)));

@@ -1,0 +1,109 @@
+{
+  "glossary": [
+    {
+      "id": "ai-artificial-intelligence",
+      "title": "Artificial intelligence",
+      "bn": "কৃত্রিম বুদ্ধিমত্তা",
+      "def": "Software that does tasks which normally need human intelligence, such as understanding speech, recognising images, translating or writing text.",
+      "wiki": "Artificial intelligence"
+    },
+    {
+      "id": "ai-machine-learning",
+      "title": "Machine learning",
+      "bn": "মেশিন লার্নিং",
+      "def": "A way of building software where the program finds patterns in many examples instead of following step-by-step rules written by a person.",
+      "wiki": "Machine learning"
+    },
+    {
+      "id": "ai-neural-network",
+      "title": "Neural network",
+      "bn": null,
+      "def": "A model made of many layers of simple connected maths units. Training adjusts the strength of the connections (the weights) until the outputs become useful.",
+      "wiki": "Artificial neural network"
+    },
+    {
+      "id": "ai-large-language-model-llm",
+      "title": "Large language model (LLM)",
+      "bn": null,
+      "def": "A neural network trained on a huge amount of text to predict what text comes next. Chatbots such as ChatGPT, Claude and Gemini are built on models like this.",
+      "wiki": "Large language model"
+    },
+    {
+      "id": "ai-token",
+      "title": "Token",
+      "bn": null,
+      "def": "A small chunk of text (a word, part of a word or punctuation) that a language model reads and writes. Limits and costs are often counted in tokens.",
+      "wiki": "Large language model"
+    },
+    {
+      "id": "ai-training-and-inference",
+      "title": "Training and inference",
+      "bn": null,
+      "def": "Training is the long, expensive process of teaching a model from data. Inference is using the finished model to answer a question.",
+      "wiki": "Machine learning"
+    },
+    {
+      "id": "ai-prompt",
+      "title": "Prompt",
+      "bn": null,
+      "def": "The text or instruction you give a model. Clear, specific prompts with context usually give better answers.",
+      "wiki": "Prompt engineering"
+    },
+    {
+      "id": "ai-generative-ai",
+      "title": "Generative AI",
+      "bn": null,
+      "def": "AI that produces new content such as text, images, audio, video or code, rather than only sorting or labelling existing data.",
+      "wiki": "Generative artificial intelligence"
+    },
+    {
+      "id": "ai-hallucination",
+      "title": "Hallucination",
+      "bn": null,
+      "def": "When a model states something false or made up in a confident way, such as an invented fact, quote or reference. Always check important claims.",
+      "wiki": "Hallucination (artificial intelligence)"
+    },
+    {
+      "id": "ai-fine-tuning",
+      "title": "Fine-tuning",
+      "bn": null,
+      "def": "Giving an already trained model extra training on a narrower set of examples so it behaves better for a particular job or style.",
+      "wiki": "Fine-tuning (deep learning)"
+    },
+    {
+      "id": "ai-retrieval-augmented-generation-rag",
+      "title": "Retrieval-augmented generation (RAG)",
+      "bn": null,
+      "def": "The system first looks up relevant documents and hands them to the model with your question, so answers can use up-to-date or private sources.",
+      "wiki": "Retrieval-augmented generation"
+    },
+    {
+      "id": "ai-multimodal",
+      "title": "Multimodal",
+      "bn": null,
+      "def": "A model that can work with more than one kind of input or output, such as text together with images or audio.",
+      "wiki": "Multimodal learning"
+    },
+    {
+      "id": "ai-open-weights-model",
+      "title": "Open-weights model",
+      "bn": null,
+      "def": "A model whose trained parameters are published so others can download and run it. This is not always the same as fully open source, because the training data or code may not be shared.",
+      "wiki": "Large language model"
+    },
+    {
+      "id": "ai-algorithmic-bias",
+      "title": "Algorithmic bias",
+      "bn": null,
+      "def": "Unfair or skewed results that come from biased training data or design choices, for example a system that works better for some groups than others.",
+      "wiki": "Algorithmic bias"
+    }
+  ],
+  "tips": [
+    "Check anything important (facts, numbers, quotes, medical, legal or money advice) against a primary or trusted source. AI can sound sure and still be wrong.",
+    "Do not paste passwords, private messages, ID numbers or other people's personal details into an AI tool.",
+    "Ask for sources, then open them. Some answers cite pages that do not exist or do not say what is claimed.",
+    "For study, use AI to explain and quiz yourself, then do the thinking yourself. Follow your school's or university's rules on AI use.",
+    "Treat generated images, audio and video with care: they can look real and still be fake."
+  ]
+}

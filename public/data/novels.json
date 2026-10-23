@@ -1,0 +1,215 @@
+{
+  "bangla": [
+    {
+      "id": "nov-bn-0",
+      "title": "পথের পাঁচালী",
+      "by": "বিভূতিভূষণ বন্দ্যোপাধ্যায়",
+      "blurb": "Apu and Durga grow up in a poor Bengal village. A classic of Bangla literature, also known through Satyajit Ray's film.",
+      "lang": "bn",
+      "wiki": "Pather Panchali (novel)"
+    },
+    {
+      "id": "nov-bn-1",
+      "title": "দেবদাস",
+      "by": "শরৎচন্দ্র চট্টোপাধ্যায়",
+      "blurb": "A tragic love story that has been filmed many times in India, Bangladesh and Pakistan.",
+      "lang": "bn",
+      "wiki": "Devdas"
+    },
+    {
+      "id": "nov-bn-2",
+      "title": "শ্রীকান্ত",
+      "by": "শরৎচন্দ্র চট্টোপাধ্যায়",
+      "blurb": "A wandering narrator's memories of people and places, in several parts.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-3",
+      "title": "আনন্দমঠ",
+      "by": "বঙ্কিমচন্দ্র চট্টোপাধ্যায়",
+      "blurb": "A historical novel set around the sannyasi rebellion; it contains the song Vande Mataram.",
+      "lang": "bn",
+      "wiki": "Anandamath"
+    },
+    {
+      "id": "nov-bn-4",
+      "title": "কপালকুণ্ডলা",
+      "by": "বঙ্কিমচন্দ্র চট্টোপাধ্যায়",
+      "blurb": "An early Bangla romance about a girl raised by a hermit near the sea.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-5",
+      "title": "গোরা",
+      "by": "রবীন্দ্রনাথ ঠাকুর",
+      "blurb": "A long novel about identity, religion and nationalism in colonial Bengal.",
+      "lang": "bn",
+      "wiki": "Gora (novel)"
+    },
+    {
+      "id": "nov-bn-6",
+      "title": "ঘরে বাইরে",
+      "by": "রবীন্দ্রনাথ ঠাকুর",
+      "blurb": "A story told in three voices, set during the swadeshi movement.",
+      "lang": "bn",
+      "wiki": "The Home and the World"
+    },
+    {
+      "id": "nov-bn-7",
+      "title": "বিষাদ সিন্ধু",
+      "by": "মীর মশাররফ হোসেন",
+      "blurb": "A retelling of the Karbala story in Bangla prose, a landmark of Bengali Muslim literature.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-8",
+      "title": "পদ্মা নদীর মাঝি",
+      "by": "মানিক বন্দ্যোপাধ্যায়",
+      "blurb": "Life of fishermen on the Padma river.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-9",
+      "title": "লালসালু",
+      "by": "সৈয়দ ওয়ালীউল্লাহ",
+      "blurb": "A sharp novel about religion and power in a village.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-10",
+      "title": "নন্দিত নরকে",
+      "by": "হুমায়ূন আহমেদ",
+      "blurb": "Humayun Ahmed's first novel.",
+      "lang": "bn"
+    },
+    {
+      "id": "nov-bn-11",
+      "title": "হাঙর নদী গ্রেনেড",
+      "by": "সেলিনা হোসেন",
+      "blurb": "A novel set around the 1971 Liberation War.",
+      "lang": "bn"
+    }
+  ],
+  "world": [
+    {
+      "id": "nov-w-0",
+      "title": "Frankenstein",
+      "by": "Mary Shelley",
+      "blurb": "A scientist creates a living being and then abandons it.",
+      "lang": "en",
+      "wiki": "Frankenstein"
+    },
+    {
+      "id": "nov-w-1",
+      "title": "Pride and Prejudice",
+      "by": "Jane Austen",
+      "blurb": "Wit, family pressure and first impressions in Regency England.",
+      "lang": "en",
+      "wiki": "Pride and Prejudice"
+    },
+    {
+      "id": "nov-w-2",
+      "title": "Jane Eyre",
+      "by": "Charlotte Brontë",
+      "blurb": "An orphan becomes a governess and finds a secret at Thornfield Hall.",
+      "lang": "en",
+      "wiki": "Jane Eyre"
+    },
+    {
+      "id": "nov-w-3",
+      "title": "Great Expectations",
+      "by": "Charles Dickens",
+      "blurb": "Pip, a poor boy, is given a mysterious chance to rise in society.",
+      "lang": "en",
+      "wiki": "Great Expectations"
+    },
+    {
+      "id": "nov-w-4",
+      "title": "Les Misérables",
+      "by": "Victor Hugo",
+      "blurb": "A long story of justice, mercy and revolution in 19th-century France.",
+      "lang": "en",
+      "wiki": "Les Misérables"
+    },
+    {
+      "id": "nov-w-5",
+      "title": "The Count of Monte Cristo",
+      "by": "Alexandre Dumas",
+      "blurb": "A wrongly imprisoned sailor plans his revenge.",
+      "lang": "en",
+      "wiki": "The Count of Monte Cristo"
+    },
+    {
+      "id": "nov-w-6",
+      "title": "Crime and Punishment",
+      "by": "Fyodor Dostoevsky",
+      "blurb": "A poor student commits a crime and is haunted by it.",
+      "lang": "en",
+      "wiki": "Crime and Punishment"
+    },
+    {
+      "id": "nov-w-7",
+      "title": "War and Peace",
+      "by": "Leo Tolstoy",
+      "blurb": "Families and the Napoleonic wars in Russia. Very long.",
+      "lang": "en",
+      "wiki": "War and Peace"
+    },
+    {
+      "id": "nov-w-8",
+      "title": "Don Quixote",
+      "by": "Miguel de Cervantes",
+      "blurb": "A man who has read too many knightly tales sets out as a knight.",
+      "lang": "en",
+      "wiki": "Don Quixote"
+    },
+    {
+      "id": "nov-w-9",
+      "title": "Moby-Dick",
+      "by": "Herman Melville",
+      "blurb": "Captain Ahab's obsession with a white whale.",
+      "lang": "en",
+      "wiki": "Moby-Dick"
+    },
+    {
+      "id": "nov-w-10",
+      "title": "Dracula",
+      "by": "Bram Stoker",
+      "blurb": "A story told in letters and diaries about a vampire in England.",
+      "lang": "en",
+      "wiki": "Dracula"
+    },
+    {
+      "id": "nov-w-11",
+      "title": "Treasure Island",
+      "by": "Robert Louis Stevenson",
+      "blurb": "Pirates, a map and a boy named Jim Hawkins.",
+      "lang": "en",
+      "wiki": "Treasure Island"
+    },
+    {
+      "id": "nov-w-12",
+      "title": "The Time Machine",
+      "by": "H. G. Wells",
+      "blurb": "A short science-fiction classic about far-future humanity.",
+      "lang": "en",
+      "wiki": "The Time Machine"
+    },
+    {
+      "id": "nov-w-13",
+      "title": "Around the World in Eighty Days",
+      "by": "Jules Verne",
+      "blurb": "A bet, a journey and a deadline.",
+      "lang": "en",
+      "wiki": "Around the World in Eighty Days"
+    },
+    {
+      "id": "nov-w-14",
+      "title": "Alice's Adventures in Wonderland",
+      "by": "Lewis Carroll",
+      "blurb": "A girl follows a white rabbit into a strange world.",
+      "lang": "en",
+      "wiki": "Alice's Adventures in Wonderland"
+    }
+  ]
+}

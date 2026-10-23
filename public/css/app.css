@@ -322,3 +322,9 @@ dialog h2 { margin-bottom: 10px; }
 .score { font: 600 1.4rem var(--serif); }
 .more-links { gap: 12px; }
 .more-links a { font-weight: 600; }
+
+/* ❤ love button + visits */
+.act.love[aria-pressed="true"] { color: #d6336c; border-color: currentColor; }
+.act.love[aria-pressed="true"] .ico { filter: none; }
+.love-n { margin-left: .15rem; font-variant-numeric: tabular-nums; font-size: .85em; }
+#visits { white-space: nowrap; }

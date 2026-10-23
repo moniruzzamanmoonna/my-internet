@@ -48,7 +48,7 @@ function news(ctx, body) {
     status.append(
       h('div', { class: 'panel-head' }, h('h2', { text: 'Latest from Bangladeshi publishers' }), h('button', { type: 'button', class: 'btn sm', onclick: () => load() }, 'Refresh')),
       h('div', { class: 'badges' }, ...parts),
-      data.cached ? h('p', { class: 'hint warn-text', text: 'Some articles below come from an older snapshot saved in this browser because the live feed could not be reached. They are marked “Cached” and may be out of date.' }) : null,
+      data.cached ? h('p', { class: 'hint warn-text', text: 'Some articles below come from an older snapshot saved in this browser because the live feed could not be reached. They are marked “Cached” and may be out of date.' }) : '',
       h('details', { class: 'src-status' }, h('summary', { text: 'Source status' }),
         h('ul', {}, data.per.map((p) => h('li', {}, h('strong', { text: p.src.name }), ' — ',
           p.state === 'live' ? `live, ${p.count} items (${fmtTime(p.at)})` : p.state === 'cached' ? `cached snapshot from ${fmtTime(p.at)} (${p.error})` : `unavailable (${p.error})`)))),

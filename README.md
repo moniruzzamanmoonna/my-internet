@@ -133,3 +133,25 @@ tests/                  unit/API tests + test-only fixtures
 netlify.toml            deploy config + security headers (CSP)
 firestore.rules         per-user data access rules
 ```
+
+## ❤ Love reactions and total visits
+
+- Every article card has a ❤ button with a shared count (`/api/love`) and the footer shows total visits (`/api/visits`).
+- Stored in **Netlify Blobs** (built in, free, no credit card, no setup). Dependency: `@netlify/blobs`.
+- No accounts: a random anonymous id in the visitor's browser counts as the "voter". One love per browser per article; clearing site data allows loving again.
+- Visits count once per browser tab session, not per unique person. Counters are read-modify-write, so two taps in the same instant can lose one count.
+- Locally (`npm run dev:local`) the counters live in memory and reset on restart.
+
+## AI and Novels pages
+
+- **AI** (`#/ai`): live news from AI-focused feeds (Hugging Face, OpenAI, Google AI, MIT Technology Review AI, Ars Technica AI) plus AI-keyword matches from general tech feeds; a plain-language glossary (`public/data/ai.json`); a short "use it wisely" list. Those five AI feed URLs could not be tested from the build sandbox: run `npm run check-feeds` on your computer. A feed that fails shows as "Unavailable", never as fake news.
+- **Novels** (`#/novel`): a hand-picked shelf of Bangla novels and public-domain world classics (`public/data/novels.json`). Buttons are searches on Wikisource, Project Gutenberg and Wikipedia; the page does not claim any book is available.
+- On phones both pages are inside the **More** menu.
+
+## Jobs page (`#/jobs`)
+
+- Searches the Bangladeshi newspaper feeds already in the catalog, plus any feed you add under **Sources** with the category **Jobs**, for recruitment/circular items. Items from your own Jobs feeds always count as circulars.
+- Preferences (sector, fields, keywords) are saved in your browser (and synced if you use Firebase sync). "Government / non-government" and "field" are keyword guesses and are labelled so.
+- "New since your last visit" is based on the article's published date; "Mark all as seen" resets it.
+- **Notifications** use the browser Notification API and only fire while My Internet is open in a tab (checked every 30 minutes). Turning them on never announces old items. Closed-app push is not included: it needs a push server, a scheduled function and keys.
+- Limits: most Bangladeshi job sites (bdjobs, Teletalk, etc.) have no public feed that could be confirmed, and scraping them could break their terms, so they appear only as links under "Official sites". Search results can miss circulars.

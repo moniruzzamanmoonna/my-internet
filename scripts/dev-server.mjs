@@ -14,6 +14,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { handleFeed } from '../netlify/lib/feed-handler.mjs';
 import { handleWiki } from '../netlify/lib/wiki-handler.mjs';
 import { handleConfig } from '../netlify/lib/config-handler.mjs';
+import { handleLove, handleVisits, memoryStore } from '../netlify/lib/engage-handler.mjs';
+
+const devStore = memoryStore(); // local only; production uses Netlify Blobs
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -36,10 +39,13 @@ export function createDevServer({ publicDir = path.join(ROOT, 'public') } = {}) 
       const url = new URL(nodeReq.url, `http://${nodeReq.headers.host || 'localhost'}`);
 
       if (url.pathname.startsWith('/api/')) {
-        const req = new Request(url, { method: nodeReq.method, headers: nodeReq.headers });
+        const hasBody = !['GET', 'HEAD'].includes(nodeReq.method);
+        const req = new Request(url, { method: nodeReq.method, headers: nodeReq.headers, ...(hasBody ? { body: nodeReq, duplex: 'half' } : {}) });
         let res;
         if (url.pathname === '/api/feed' || url.pathname.startsWith('/api/feed/')) res = await handleFeed(req);
         else if (url.pathname === '/api/wiki') res = await handleWiki(req);
+        else if (url.pathname === '/api/love') res = await handleLove(req, devStore);
+        else if (url.pathname === '/api/visits') res = await handleVisits(req, devStore);
         else if (url.pathname === '/api/config') res = handleConfig(req);
         else res = new Response(JSON.stringify({ ok: false, error: { code: 'not_found' } }), { status: 404, headers: { 'content-type': 'application/json' } });
         nodeRes.writeHead(res.status, Object.fromEntries(res.headers));
