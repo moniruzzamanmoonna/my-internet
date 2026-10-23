@@ -76,7 +76,17 @@ function applyTheme(t) {
   const label = { system: 'Theme: match device', light: 'Theme: light', dark: 'Theme: dark' }[t];
   btn.title = label; btn.setAttribute('aria-label', label);
   btn.textContent = { system: '🌓', light: '☀️', dark: '🌙' }[t];
+  syncThemeColor(t);
 }
+// Keep the phone's browser bar colour in step with the chosen theme.
+function syncThemeColor(t) {
+  const dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.remove());
+  const m = document.createElement('meta');
+  m.name = 'theme-color'; m.content = dark ? '#141320' : '#faf9ff';
+  document.head.append(m);
+}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (currentTheme() === 'system') syncThemeColor('system'); });
 document.getElementById('btn-theme').addEventListener('click', () => {
   const next = THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length];
   try { storage.setItem('mi.theme', JSON.stringify(next)); } catch { /* ignore */ }

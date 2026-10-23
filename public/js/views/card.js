@@ -1,6 +1,6 @@
 // The article card, shared by the feed, saved items and discovery.
 import { h, timeAgo, debounce } from '../util.js';
-import { getCount, setLoved, isLoved } from '../engage.js';
+import { getStats, setReaction, isLoved, report } from '../engage.js';
 
 export function articleCard(ctx, item, { showNote = false } = {}) {
   const { store } = ctx;
@@ -9,7 +9,7 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
 
   const dot = h('span', { class: 'dot', 'aria-hidden': 'true' });
   const link = h('a', { href: item.link, target: '_blank', rel: 'noopener noreferrer', text: item.title });
-  const markRead = () => { store.setRead(item.id, true, item.cat); paint(); };
+  const markRead = () => { store.setRead(item.id, true, item.cat); sendReaction('read', true); paint(); };
   link.addEventListener('click', markRead);
   link.addEventListener('auxclick', markRead);
 
@@ -18,28 +18,34 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
   const bmBtn = h('button', { type: 'button', class: 'act', 'aria-pressed': 'false', title: 'Bookmark', onclick: () => {
     const on = store.toggleBookmark(item);
     ctx.toast(on ? 'Bookmarked' : 'Bookmark removed');
+    sendReaction('save', on);
     paint();
   } }, h('span', { class: 'ico', 'aria-hidden': 'true', text: '🔖' }), h('span', { class: 'lbl', text: 'Save' }));
 
-  // ❤ is shared: the number is how many visitors loved this article.
+  // ❤ is shared: the numbers under the article are how many visitors loved / saved / read it.
   const loveBtn = h('button', { type: 'button', class: 'act love', 'aria-pressed': String(isLoved(item.id)), title: 'Love this article' },
     h('span', { class: 'ico', 'aria-hidden': 'true', text: '❤' }), h('span', { class: 'lbl', text: 'Love' }));
-  const loveCount = h('span', { class: 'love-n', 'aria-live': 'polite' });
-  loveBtn.append(loveCount);
-  const showCount = (n) => { loveCount.textContent = n > 0 ? String(n) : ''; };
-  getCount(item.id).then((n) => { if (n !== null) showCount(n); else loveBtn.title = 'Love counter unavailable right now'; });
+  const stats = h('p', { class: 'stats hint', 'aria-live': 'polite' });
+  const showStats = (r) => {
+    if (!r) { stats.textContent = ''; return; }
+    const parts = [[r.love, 'loved'], [r.save, 'saved'], [r.read, 'read']].filter(([n]) => n > 0).map(([n, w]) => `${n} ${w}`);
+    stats.textContent = parts.join(' · ');
+  };
+  getStats(item.id).then(showStats);
   loveBtn.addEventListener('click', async () => {
     const want = loveBtn.getAttribute('aria-pressed') !== 'true';
     loveBtn.disabled = true;
-    const n = await setLoved(item.id, want);
+    const r = await setReaction('love', item.id, want);
     loveBtn.disabled = false;
-    if (n === null) { ctx.toast("Couldn't reach the love counter. Try again."); return; }
+    if (!r) { ctx.toast("Couldn't reach the counter. Try again."); return; }
     loveBtn.setAttribute('aria-pressed', String(want));
-    showCount(n);
+    showStats(r);
   });
+  const sendReaction = (kind, on) => report(kind, item.id, on).then((r) => { if (r) showStats(r); });
 
   const readBtn = h('button', { type: 'button', class: 'act', 'aria-pressed': 'false', onclick: () => {
-    store.setRead(item.id, !store.isRead(item.id), item.cat); paint();
+    const now = !store.isRead(item.id);
+    store.setRead(item.id, now, item.cat); sendReaction('read', now); paint();
   } }, h('span', { class: 'ico', 'aria-hidden': 'true', text: '✓' }), h('span', { class: 'lbl' }));
 
   const noteBtn = h('button', { type: 'button', class: 'act', 'aria-expanded': 'false', onclick: () => {
@@ -66,6 +72,7 @@ export function articleCard(ctx, item, { showNote = false } = {}) {
     ),
     img,
     h('div', { class: 'actions' }, loveBtn, bmBtn, readBtn, noteBtn),
+    stats,
     box,
   ].filter(Boolean)); // native append() would print "null" for a missing image
 

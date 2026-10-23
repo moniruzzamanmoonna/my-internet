@@ -1,38 +1,40 @@
 /* My Internet — mobile-first, calm, editorial. No web fonts, no trackers. */
 
 :root {
-  --bg: #f6f2ea;
-  --surface: #fffdf8;
-  --surface-2: #efe9dc;
-  --ink: #1d1b17;
-  --muted: #6a6457;
-  --line: #e2dac9;
-  --accent: #a93f25;
+  /* Soft Focus: soft white, quiet lavender. Contrast checked (WCAG AA) for text/accent pairs. */
+  --bg: #faf9ff;
+  --surface: #ffffff;
+  --surface-2: #f1effb;
+  --ink: #24223a;
+  --muted: #5f5c78;
+  --line: #e7e4f4;
+  --accent: #5b4bc4;
   --accent-ink: #ffffff;
-  --accent-soft: #f4dfd6;
-  --good: #2f6b3f;
-  --bad: #a3261a;
+  --accent-soft: #ece9fc;
+  --good: #2b6b46;
+  --bad: #b3261e;
   --warn: #8a5a00;
-  --shadow: 0 1px 2px rgb(40 30 10 / 6%), 0 4px 14px rgb(40 30 10 / 5%);
-  --radius: 14px;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif", serif;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Bengali", sans-serif;
-  --nav-h: 58px;
+  --love: #c2255c;
+  --shadow: 0 1px 2px rgb(60 50 120 / 5%), 0 8px 24px rgb(60 50 120 / 6%);
+  --radius: 18px;
+  --serif: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Bengali", "Nirmala UI", sans-serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Bengali", "Nirmala UI", sans-serif;
+  --nav-h: 60px;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #14130f; --surface: #1d1b16; --surface-2: #26231d; --ink: #ece6d8; --muted: #a39b8a;
-    --line: #34302a; --accent: #e8825f; --accent-ink: #1a0f0a; --accent-soft: #3a2519;
-    --good: #7fcf94; --bad: #ff8f80; --warn: #e6b455; --shadow: 0 1px 2px rgb(0 0 0 / 40%);
+    --bg: #141320; --surface: #1c1b2b; --surface-2: #25243a; --ink: #ecebf7; --muted: #a9a6c4;
+    --line: #34324b; --accent: #b4a8ff; --accent-ink: #1a1633; --accent-soft: #2c2850;
+    --good: #86d9a0; --bad: #ff9a8f; --warn: #e6b455; --love: #ff7aa8; --shadow: 0 1px 2px rgb(0 0 0 / 35%), 0 8px 24px rgb(0 0 0 / 25%);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #14130f; --surface: #1d1b16; --surface-2: #26231d; --ink: #ece6d8; --muted: #a39b8a;
-  --line: #34302a; --accent: #e8825f; --accent-ink: #1a0f0a; --accent-soft: #3a2519;
-  --good: #7fcf94; --bad: #ff8f80; --warn: #e6b455; --shadow: 0 1px 2px rgb(0 0 0 / 40%);
+  --bg: #141320; --surface: #1c1b2b; --surface-2: #25243a; --ink: #ecebf7; --muted: #a9a6c4;
+  --line: #34324b; --accent: #b4a8ff; --accent-ink: #1a1633; --accent-soft: #2c2850;
+  --good: #86d9a0; --bad: #ff9a8f; --warn: #e6b455; --love: #ff7aa8; --shadow: 0 1px 2px rgb(0 0 0 / 35%), 0 8px 24px rgb(0 0 0 / 25%);
   color-scheme: dark;
 }
 
@@ -225,7 +227,7 @@ label { display: block; font-size: .85rem; font-weight: 600; margin: 10px 0 4px;
 .busy .tile, .busy .surprise { opacity: .6; pointer-events: none; }
 
 /* ---------- dialog & toasts ---------- */
-dialog { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); max-width: min(92vw, 440px); padding: 20px; box-shadow: 0 20px 60px rgb(0 0 0 / 35%); }
+dialog { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); max-width: min(92vw, 440px); padding: 20px; box-shadow: 0 24px 70px rgb(30 20 80 / 28%); }
 dialog::backdrop { background: rgb(0 0 0 / 45%); }
 dialog h2 { margin-bottom: 10px; }
 .dlg-close { margin-top: 14px; }
@@ -324,7 +326,47 @@ dialog h2 { margin-bottom: 10px; }
 .more-links a { font-weight: 600; }
 
 /* ❤ love button + visits */
-.act.love[aria-pressed="true"] { color: #d6336c; border-color: currentColor; }
+.act.love[aria-pressed="true"] { color: var(--love); border-color: currentColor; }
 .act.love[aria-pressed="true"] .ico { filter: none; }
 .love-n { margin-left: .15rem; font-variant-numeric: tabular-nums; font-size: .85em; }
 #visits { white-space: nowrap; }
+
+
+/* ================= Soft Focus polish (visual only) ================= */
+body { line-height: 1.65; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-weight: 650; letter-spacing: -0.015em; line-height: 1.35; }
+.page-title { font-size: 1.75rem; margin: 12px 0 12px; font-weight: 700; }
+.lede { line-height: 1.7; }
+main { padding: 20px 20px 32px; }
+.topbar { border-bottom-color: var(--line); }
+.brand { font-weight: 700; letter-spacing: -0.01em; }
+.search input { background: var(--surface); border-color: var(--line); padding: 11px 18px; }
+.search input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+.icon-btn:hover { background: var(--accent-soft); }
+
+.card, .panel { border-color: var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card { padding: 18px 20px; margin-bottom: 14px; gap: 10px 14px; transition: border-color .15s, box-shadow .15s; }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.card .title { font-size: 1.12rem; line-height: 1.45; }
+.card .summary { line-height: 1.7; }
+.card.unread .dot { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.panel { padding: 20px; margin-bottom: 18px; }
+
+.btn, .chip { border-color: var(--line); }
+.btn:hover, .chip:hover { border-color: var(--accent); }
+.btn.primary { box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 30%, transparent); }
+.chip[aria-selected="true"], .chip[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+.chip { padding: 7px 16px; }
+
+.act { border-radius: 999px; }
+.act[aria-pressed="true"] { color: var(--accent); }
+.nav { background: var(--surface); border-top-color: var(--line); box-shadow: 0 -6px 24px rgb(60 50 120 / 6%); }
+@media (min-width: 820px) { .nav { background: transparent; box-shadow: none; } }
+.nav a[aria-current="page"], .nav .more-btn.current { color: var(--accent); }
+
+.stats { margin: 0; font-size: .8rem; color: var(--muted); min-height: 0; }
+.stats:empty { display: none; }
+.foot { color: var(--muted); }
+:focus-visible { outline-color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation-duration: .01ms !important; } }
+@media (min-width: 760px) { main { padding: 28px 24px 48px; } }

@@ -134,7 +134,7 @@ netlify.toml            deploy config + security headers (CSP)
 firestore.rules         per-user data access rules
 ```
 
-## ❤ Love reactions and total visits
+## ❤ Love / saved / read counts and total visits
 
 - Every article card has a ❤ button with a shared count (`/api/love`) and the footer shows total visits (`/api/visits`).
 - Stored in **Netlify Blobs** (built in, free, no credit card, no setup). Dependency: `@netlify/blobs`.
@@ -155,3 +155,9 @@ firestore.rules         per-user data access rules
 - "New since your last visit" is based on the article's published date; "Mark all as seen" resets it.
 - **Notifications** use the browser Notification API and only fire while My Internet is open in a tab (checked every 30 minutes). Turning them on never announces old items. Closed-app push is not included: it needs a push server, a scheduled function and keys.
 - Limits: most Bangladeshi job sites (bdjobs, Teletalk, etc.) have no public feed that could be confirmed, and scraping them could break their terms, so they appear only as links under "Official sites". Search results can miss circulars.
+
+- Under each article: "N loved · N saved · N read". Save = bookmarked, read = marked read (by clicking the headline or "Mark read"), each counted once per browser. "Mark all read" does not count. Only actions taken after this feature went live are counted.
+
+## Soft Focus theme
+
+Colours are CSS variables at the top of `public/css/app.css` (light and dark sets, AA contrast checked). The 🌓/☀️/🌙 button cycles Match device → Light → Dark, saves the choice in this browser, follows the device setting while on "Match device", and updates the phone browser bar colour.

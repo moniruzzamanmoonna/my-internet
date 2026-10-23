@@ -37,3 +37,17 @@ test('visits: GET reads, POST increments', async () => {
   await handleVisits(new Request('http://x/api/visits', { method: 'POST' }), s);
   assert.equal((await (await handleVisits(get('/api/visits'), s)).json()).visits, 1);
 });
+
+test('save and read counts are separate from love and per visitor', async () => {
+  const s = memoryStore();
+  const other = 'qqqqqqqqqqqqqqqqqqqq';
+  await handleLove(post('/api/love', { id: 'art123', cid: CID, on: true, kind: 'save' }), s);
+  await handleLove(post('/api/love', { id: 'art123', cid: other, on: true, kind: 'save' }), s);
+  await handleLove(post('/api/love', { id: 'art123', cid: CID, on: true, kind: 'read' }), s);
+  await handleLove(post('/api/love', { id: 'art123', cid: CID, on: true, kind: 'read' }), s);
+  const g = await (await handleLove(get('/api/love?ids=art123'), s)).json();
+  assert.deepEqual(g.stats.art123, { love: 0, save: 2, read: 1 });
+  await handleLove(post('/api/love', { id: 'art123', cid: CID, on: false, kind: 'save' }), s);
+  assert.equal((await (await handleLove(get('/api/love?ids=art123'), s)).json()).stats.art123.save, 1);
+  assert.equal((await handleLove(post('/api/love', { id: 'art123', cid: CID, on: true, kind: 'bogus' }), s)).status, 400);
+});
